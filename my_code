@@ -1,0 +1,53 @@
+myButLast :: [a] -> a                           // getting the second element from the end of an array
+
+myButLast [] = error "Empty list"
+myButLast [x] = error "Too few elements"
+myButLast (x:xs) = 
+		if length xs == 1 then x
+		else myButLast xs
+
+main = print  $ myButLast [1,2,3,4]     
+
+------------------------------------------------------------------------------------------------------------------------------
+
+elementAt :: ([a],Int) -> a                   // getting the given element of an array recursively
+
+elementAt ([],a1) = error "no list exists"
+elementAt (xs2,0) = error "invalid index"
+elementAt ((x:xs),a2)
+        | a2==1 = x 
+        | a2 > length xs+1 = error "index out of array range"
+		| otherwise =  elementAt $ (xs,a2-1)
+
+main = print  $ elementAt ([1,2,3],2)
+
+------------------------------------------------------------------------------------------------------------------------------
+
+myLength :: [a] -> Int                  // getting the length of an array recursively
+
+myLength [] = 0
+myLength [x] = 1
+myLength (x:xs) = 1 +  myLength xs
+
+main = print  $ myLength [1,2,3,4,5]
+
+------------------------------------------------------------------------------------------------------------------------------
+
+myReverse :: [a] -> [a]                 // reversing an array recursively
+
+myReverse [] = []
+myReverse [x] = [x]
+myReverse (x:xs) = myReverse xs ++ [x] 
+
+main = print  $ myReverse [1,2,3,4,5]
+
+------------------------------------------------------------------------------------------------------------------------------
+
+isPalindrome :: (Eq a) => [a] -> Bool                  // detecting palindrome array 
+isPalindrome xs = xs == (reverse xs)
+
+isPalindrome []  = True
+isPalindrome [x] = False
+isPalindrome list  = (head list) == (last list) && (isPalindrome $ init $ tail list)
+main = print $ isPalindrome [1,2,3,2,1]
+
