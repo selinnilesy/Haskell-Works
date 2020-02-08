@@ -73,3 +73,31 @@ removeDuplicates = helper []
               | otherwise = helper (seen ++ [x]) xs
 
 main = print $ removeDuplicates [1,2,2,3,5,5]
+
+------------------------------------------------------------------------------------------------------------------------------
+
+repli :: [a] -> Int -> [a]               // replicates elements of a list given times
+
+repli xs n = concatMap (replicate n) xs
+main = print $ repli [1,2,3] 2
+
+------------------------------------------------------------------------------------------------------------------------------
+
+dropEvery :: [a] -> Int -> [a]            // drops each Nth element of a list recursively
+
+dropEvery xs 0 = []
+dropEvery xs n = helper xs n
+    where helper [] _ = []
+          helper (x:xs) 1 = helper xs n
+          helper (x:xs) k = x : helper xs (k-1)
+	  
+main = print $ dropEvery [1,2,3,4,5,6,7,8] 3
+
+------------------------------------------------------------------------------------------------------------------------------
+removeAt :: Int -> [a] -> (a, [a])           // removes Nth element of a list and returns it together with the remaining list
+
+removeAt 1 (x:xs) = (x, xs)
+removeAt n (x:xs) = (l, x:r)
+	where (l, r) = removeAt (n - 1) xs
+	  
+main = print $ removeAt 2 [1,2,3]
