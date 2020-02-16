@@ -1,4 +1,4 @@
-myButLast :: [a] -> a                           // getting the second element from the end of an array
+myButLast :: [a] -> a                         -- getting the second element from the end of an array
 
 myButLast [] = error "Empty list"
 myButLast [x] = error "Too few elements"
@@ -10,7 +10,7 @@ main = print  $ myButLast [1,2,3,4]
 
 ------------------------------------------------------------------------------------------------------------------------------
 
-elementAt :: ([a],Int) -> a                   // getting the given element of an array recursively
+elementAt :: ([a],Int) -> a                 -- getting the given element of an array recursively
 
 elementAt ([],a1) = error "no list exists"
 elementAt (xs2,0) = error "invalid index"
@@ -23,7 +23,7 @@ main = print  $ elementAt ([1,2,3],2)
 
 ------------------------------------------------------------------------------------------------------------------------------
 
-myLength :: [a] -> Int                  // getting the length of an array recursively
+myLength :: [a] -> Int                  -- getting the length of an array recursively
 
 myLength [] = 0
 myLength [x] = 1
@@ -33,7 +33,7 @@ main = print  $ myLength [1,2,3,4,5]
 
 ------------------------------------------------------------------------------------------------------------------------------
 
-myReverse :: [a] -> [a]                 // reversing an array recursively
+myReverse :: [a] -> [a]                 -- reversing an array recursively
 
 myReverse [] = []
 myReverse [x] = [x]
@@ -43,7 +43,7 @@ main = print  $ myReverse [1,2,3,4,5]
 
 ------------------------------------------------------------------------------------------------------------------------------
 
-isPalindrome :: (Eq a) => [a] -> Bool                  // detecting palindrome array 
+isPalindrome :: (Eq a) => [a] -> Bool                  -- detecting palindrome array 
 isPalindrome xs = xs == (reverse xs)
 
 isPalindrome []  = True
@@ -53,9 +53,9 @@ main = print $ isPalindrome [1,2,3,2,1]
 
 ------------------------------------------------------------------------------------------------------------------------------
 
-data NestedList a = Elem a | List [NestedList a]  // since nested lists are type error in Haskell, we need to define it
+data NestedList a = Elem a | List [NestedList a] -- since nested lists are type error in Haskell, we need to define it
 
-flatten :: NestedList a -> [a]                   // flattens a nested list
+flatten :: NestedList a -> [a]                 -- flattens a nested list
 
 flatten (List [])     = []
 flatten (Elem temp)   = [temp]
@@ -65,7 +65,7 @@ main = print $ flatten $ List[Elem 1, List [Elem 2, Elem 3], Elem 4]
 
 ------------------------------------------------------------------------------------------------------------------------------
 
-removeDuplicates :: Eq a => [a] -> [a]            // removes duplicate values of a list
+removeDuplicates :: Eq a => [a] -> [a]           -- removes duplicate values of a list
 removeDuplicates = helper []
     where helper seen [] = seen
           helper seen (x:xs)
@@ -76,14 +76,14 @@ main = print $ removeDuplicates [1,2,2,3,5,5]
 
 ------------------------------------------------------------------------------------------------------------------------------
 
-repli :: [a] -> Int -> [a]               // replicates elements of a list given times
+repli :: [a] -> Int -> [a]               -- replicates elements of a list given times
 
 repli xs n = concatMap (replicate n) xs
 main = print $ repli [1,2,3] 2
 
 ------------------------------------------------------------------------------------------------------------------------------
 
-dropEvery :: [a] -> Int -> [a]            // drops each Nth element of a list recursively
+dropEvery :: [a] -> Int -> [a]            -- drops each Nth element of a list recursively
 
 dropEvery xs 0 = []
 dropEvery xs n = helper xs n
@@ -94,7 +94,7 @@ dropEvery xs n = helper xs n
 main = print $ dropEvery [1,2,3,4,5,6,7,8] 3
 
 ------------------------------------------------------------------------------------------------------------------------------
-removeAt :: Int -> [a] -> (a, [a])           // removes Nth element of a list and returns it together with the remaining list
+removeAt :: Int -> [a] -> (a, [a])           -- removes Nth element of a list and returns it together with the remaining list
 
 removeAt 1 (x:xs) = (x, xs)
 removeAt n (x:xs) = (l, x:r)
@@ -104,7 +104,7 @@ main = print $ removeAt 2 [1,2,3]
 
 ------------------------------------------------------------------------------------------------------------------------------
 
-data MyList = E | L (Int, MyList) deriving Show  	 // recursive list definition and its use
+data MyList = E | L (Int, MyList) deriving Show  	-- recursive list definition and its use
 ex1= L (1, L(2, L(3, E)))
 first_el (x:y) = x
 first_el2 (L (x,y)) = x
@@ -121,7 +121,7 @@ main = do
 
 ------------------------------------------------------------------------------------------------------------------------------
 
-data BT a = Empty | Node (a, BT a, BT a) deriving Show      // recursive tree implementation and sum of the nodes
+data BT a = Empty | Node (a, BT a, BT a) deriving Show     -- recursive tree implementation and sum of the nodes
 bt= Node(1, Node(2,Empty,Empty),Node(3,Node(4,Empty,Empty),Empty))
 sum_bt Empty = 0
 sum_bt (Node (x,y,z)) = x + sum_bt y + sum_bt z
@@ -129,7 +129,7 @@ sum_bt (Node (x,y,z)) = x + sum_bt y + sum_bt z
 main = print $ sum_bt bt
 
 ------------------------------------------------------------------------------------------------------------------------------
-data EGG = Egg CHICKEN | Eg Int      			// recursive type declarations and function implementations
+data EGG = Egg CHICKEN | Eg Int      		-- recursive type declarations and function implementations
 data CHICKEN = Chicken EGG | Chick Bool
 egg = Egg (Chicken (Egg (Chicken (Egg (Chick True)))))
 chicken= Chicken (Egg (Chicken (Eg 2)))
@@ -143,4 +143,12 @@ main = print $ g chicken
 
 ------------------------------------------------------------------------------------------------------------------------------
 
+f x = x+1 					-- returning another function cal
+g = f
+h=3
+w r s = r s
+z (f1,f2,c) = if (c>0) then f1 else f2
+ 
+main = print $ z (f,g,10) 5
 
+------------------------------------------------------------------------------------------------------------------------------
