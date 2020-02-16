@@ -104,7 +104,7 @@ main = print $ removeAt 2 [1,2,3]
 
 ------------------------------------------------------------------------------------------------------------------------------
 
-data MyList = E | L (Int, MyList) deriving Show   // recursive list definition and its use
+data MyList = E | L (Int, MyList) deriving Show  	 // recursive list definition and its use
 ex1= L (1, L(2, L(3, E)))
 first_el (x:y) = x
 first_el2 (L (x,y)) = x
@@ -119,4 +119,24 @@ main = do
     print $ last_el ex2
     print $ last_el2 ex1
 
+------------------------------------------------------------------------------------------------------------------------------
 
+data BT a = Empty | Node (a, BT a, BT a) deriving Show      // recursive tree implementation and sum of the nodes
+bt= Node(1, Node(2,Empty,Empty),Node(3,Node(4,Empty,Empty),Empty))
+sum_bt Empty = 0
+sum_bt (Node (x,y,z)) = x + sum_bt y + sum_bt z
+
+main = print $ sum_bt bt
+
+------------------------------------------------------------------------------------------------------------------------------
+data TAKA = Taka TUKA | Tak Int       			 // recursive data type implementation 
+data TUKA = Tuka TAKA | Tuk Bool
+taka = Taka (Tuka (Taka (Tuka (Taka (Tuk True)))))
+tuka= Tuka (Taka (Tuka (Tak 2)))
+f(Tak x) = x
+f (Taka y)= 2*(g y)
+
+g(Tuk True) =1
+g(Tuk False) =0
+g(Tuka x) =1+ (f x)
+main = print $ g tuka
