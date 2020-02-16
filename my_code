@@ -101,3 +101,22 @@ removeAt n (x:xs) = (l, x:r)
 	where (l, r) = removeAt (n - 1) xs
 	  
 main = print $ removeAt 2 [1,2,3]
+
+------------------------------------------------------------------------------------------------------------------------------
+
+data MyList = E | L (Int, MyList) deriving Show   // recursive list definition and its use
+ex1= L (1, L(2, L(3, E)))
+first_el (x:y) = x
+first_el2 (L (x,y)) = x
+
+ex2= [1,2,3,4,5,6,7]
+last_el (x:[]) = x
+last_el (x:xs) = last_el xs
+
+last_el2 (L (x,E)) = x
+last_el2 (L (x,xs)) = last_el2 xs
+main = do 
+    print $ last_el ex2
+    print $ last_el2 ex1
+
+
