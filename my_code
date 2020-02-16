@@ -129,14 +129,18 @@ sum_bt (Node (x,y,z)) = x + sum_bt y + sum_bt z
 main = print $ sum_bt bt
 
 ------------------------------------------------------------------------------------------------------------------------------
-data TAKA = Taka TUKA | Tak Int       			 // recursive data type implementation 
-data TUKA = Tuka TAKA | Tuk Bool
-taka = Taka (Tuka (Taka (Tuka (Taka (Tuk True)))))
-tuka= Tuka (Taka (Tuka (Tak 2)))
-f(Tak x) = x
-f (Taka y)= 2*(g y)
+data EGG = Egg CHICKEN | Eg Int      			// recursive type declarations and function implementations
+data CHICKEN = Chicken EGG | Chick Bool
+egg = Egg (Chicken (Egg (Chicken (Egg (Chick True)))))
+chicken= Chicken (Egg (Chicken (Eg 2)))
+f(Eg x) = x
+f (Egg y)= 2*(g y)
 
-g(Tuk True) =1
-g(Tuk False) =0
-g(Tuka x) =1+ (f x)
-main = print $ g tuka
+g(Chick True) =1
+g(Chick False) =0
+g(Chicken x) =1+ (f x)
+main = print $ g chicken
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
