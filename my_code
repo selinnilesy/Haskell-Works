@@ -7,7 +7,12 @@ myButLast (x:xs) =
 		else myButLast xs
 
 main = print  $ myButLast [1,2,3,4]     
+------------------------------------------------------------------------------------------------------------------------------
 
+nth 1 (x:_) = x             		   -- getting the given element of an array recursively using placeholder
+nth n (_:y) = nth (n-1) y    		  --placeholder corresponds to the first element and the rest of the list
+
+main = print $ nth 2 [9,8,7,6,5,4,3,2,1]
 ------------------------------------------------------------------------------------------------------------------------------
 
 elementAt :: ([a],Int) -> a                 -- getting the given element of an array recursively
@@ -152,3 +157,22 @@ z (f1,f2,c) = if (c>0) then f1 else f2
 main = print $ z (f,g,10) 5
 
 ------------------------------------------------------------------------------------------------------------------------------
+
+fact' 0 n = n    				--  factorial function in tail recursion format
+fact' k n  = (fact' (k-1) (n*k))
+fact n = fact' n 1
+
+main = print $ fact 4
+
+------------------------------------------------------------------------------------------------------------------------------
+
+append1 [] b = b     				--  concatenates two list together, if b is a single integer then it should be returned as [b]
+append1 (x:xs) b = x:(append1 xs b)
+
+main = print $ append1 [1,2,3,4] [2,3]
+------------------------------------------------------------------------------------------------------------------------------
+
+makeList 0 =[]					-creates a list with a given integer			
+makeList n= n:makeList(n-1)
+
+main = print $ makeList 5
