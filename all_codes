@@ -10,7 +10,7 @@ main = print  $ myButLast [1,2,3,4]
 ------------------------------------------------------------------------------------------------------------------------------
 
 nth 1 (x:_) = x             		   -- getting the given element of an array recursively using placeholder
-nth n (_:y) = nth (n-1) y    		  --placeholder corresponds to the first element and the rest of the list
+nth n (_:y) = nth (n-1) y    		  --placeholder here corresponds to the first element or the rest of the list
 
 main = print $ nth 2 [9,8,7,6,5,4,3,2,1]
 ------------------------------------------------------------------------------------------------------------------------------
