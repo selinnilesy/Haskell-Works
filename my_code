@@ -176,3 +176,53 @@ makeList 0 =[]					-creates a list with a given integer
 makeList n= n:makeList(n-1)
 
 main = print $ makeList 5
+
+------------------------------------------------------------------------------------------------------------------------------
+take1 0 _ = []					-- taking the first n elements of a list
+take1 _ [] = []
+take1 n (x:y) = x:(take1 (n-1) y)
+
+main = print $ take1 3 [1,2,3,4,5]
+
+------------------------------------------------------------------------------------------------------------------------------
+
+drop1 0 y = y 					-- dropping the first n elements of a list
+drop1 _ [] = []
+drop1 n (x:y) = (drop1 (n-1) y)
+
+main = print $ drop1 2 [1,2,3,4,5]
+------------------------------------------------------------------------------------------------------------------------------
+
+data Tree = E | N (Int, Tree, Tree) deriving Show    -- preorder traversal
+tr= N (3, N(5,E,E), N(6,N(4, N(1,E,E),E),N(3,E,E)))
+
+preOrderTraversal E = []
+preOrderTraversal (N (x,y,z)) = x: (preOrderTraversal y ++ preOrderTraversal z)
+
+main = print $ preOrderTraversal tr
+------------------------------------------------------------------------------------------------------------------------------
+data Tree = E | N (Int, Tree, Tree) deriving Show 	--using take1 and drop1 auxiliary functions, returns the preorder traversal of a given list
+tr= N (3, N(5,E,E), N(6,N(4, N(1,E,E),E),N(3,E,E)))
+
+list_to_Tree [] = E
+list_to_Tree (x:y) = N(x, list_to_Tree (take1 (div (length y) 2) y), list_to_Tree(drop1 (div (length y) 2) y))
+
+main = print $ list_to_Tree [1,2,3,4,5,6,7,8]
+------------------------------------------------------------------------------------------------------------------------------
+fib' f s 1 = s				-- optimized fibonacci function with complexity O(N)
+fib' f s n = fib' s (f+s) (n-1)
+fib n = fib' 1 1 n
+
+main = print $ fib 60
+------------------------------------------------------------------------------------------------------------------------------
+rev [] = []			--reverse function and its optimization from O(N^2) to O(N)
+rev (x:y) = rev y ++ [x]
+
+rev2' l = rev2 l [] where	-- function localization
+    rev2 [] r = r
+    rev2 (x:y) r = rev2 y (x:r)
+
+main = print $ rev2' [1,2,3,4,5]
+
+
+
