@@ -224,5 +224,27 @@ rev2' l = rev2 l [] where	-- function localization
 
 main = print $ rev2' [1,2,3,4,5]
 
+------------------------------------------------------------------------------------------------------------------------------
+ones = 1:ones
+
+mytake 0 _ = []                   -- hand-made factorial function :)
+mytake n (a:b) = a:(mytake (n-1) b)
 
 
+fact = 1: 1: zipWith (*) [2..] (tail fact)
+main = print $ take 5 fact
+------------------------------------------------------------------------------------------------------------------------------
+fibs = 0 : 1 : sumlists fibs (tail fibs)
+         where sumlists (x:xs) (y:ys) = (x+y) : sumlists xs ys      -- hand-made fibonacci functions :)
+         
+fib2 = 0 : 1 : zipWith (+) fib2 (tail fib2)  
+
+fib3 = 0 : 1 : my_map (+) fib3 (tail fib3) 
+                 where my_map f xs ys = [f x y | (x,y)<- zip xs ys]
+
+main = print $ take 8 fib3
+------------------------------------------------------------------------------------------------------------------------------
+primes = sieve [2..]
+        where sieve (p:ns) = p:sieve [n|n<- ns, n `mod` p /=0]
+
+main = print $ take 18 primes
