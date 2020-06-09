@@ -266,4 +266,8 @@ sumsub = reduce2 add sub 0 0
 subsum = reduce2 sub add 0 0
 subsub = reduce2 sub sub 0 0
 
-
+--
+data NoneorOne = None | One MaleGuest deriving Show		 --abstract data types
+data FemaleGuest = FG (String,NoneorOne,[FemaleGuest]) deriving Show
+data MaleGuest = MG (String,[FemaleGuest]) deriving Show
+data Guest =  Male MaleGuest  |  Female FemaleGuest deriving Show
