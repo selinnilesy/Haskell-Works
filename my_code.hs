@@ -248,3 +248,22 @@ primes = sieve [2..]
         where sieve (p:ns) = p:sieve [n|n<- ns, n `mod` p /=0]
 
 main = print $ take 18 primes
+
+--
+add x y = x+y   --reduce implementation for nested list
+mult x y = x*y 
+sub x y = x-y
+
+reduce2 :: (a -> a -> a) -> (a -> a -> a) -> a -> a -> [[a]] ->a
+reduce2 f1 f2 n1 n2 [] = n1
+reduce2 f1 f2 n1 n2 (x:xs) = f1 (reduce f2 n2 x) (reduce2 f1 f2 n1 n2 xs)
+
+reduce func temp [] = temp
+reduce func temp (x:xs) = func x (reduce func temp (xs))
+
+sumprod= reduce2 add mult 0 1
+sumsub = reduce2 add sub 0 0
+subsum = reduce2 sub add 0 0
+subsub = reduce2 sub sub 0 0
+
+
