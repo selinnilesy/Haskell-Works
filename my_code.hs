@@ -271,3 +271,16 @@ data NoneorOne = None | One MaleGuest deriving Show		 --abstract data types
 data FemaleGuest = FG (String,NoneorOne,[FemaleGuest]) deriving Show
 data MaleGuest = MG (String,[FemaleGuest]) deriving Show
 data Guest =  Male MaleGuest  |  Female FemaleGuest deriving Show
+
+--
+occurfind _ [] = Nothing
+occurfind [] list = Just list
+occurfind (x:xs) (x1:xs1) = if(x==x1) then occurfind xs xs1 else occurfind (x:xs) xs1
+
+occurcount _ [] = 0
+occurcount list1 list2 = let result = occurfind list1 list2
+                         in case (result) of
+                                 (Just a) -> 1 + (occurcount list1 a)
+                                 (Nothing) -> 0
+
+main = print $ occurcount [1,2,3] [3,1,2,1,3,1,2,1,2,1,3,2,1,2,3,4]
