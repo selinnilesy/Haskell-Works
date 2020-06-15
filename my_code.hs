@@ -254,7 +254,7 @@ add x y = x+y   --reduce implementation for nested list
 mult x y = x*y 
 sub x y = x-y
 
-reduce2 :: (a -> a -> a) -> (a -> a -> a) -> a -> a -> [[a]] ->a
+reduce2 :: (a -> b -> b) -> (c -> a -> a) -> b -> a -> [[c]] -> b
 reduce2 f1 f2 n1 n2 [] = n1
 reduce2 f1 f2 n1 n2 (x:xs) = f1 (reduce f2 n2 x) (reduce2 f1 f2 n1 n2 xs)
 
